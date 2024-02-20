@@ -1,6 +1,7 @@
 package Models;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +28,10 @@ public class Stock {
 
     @Override
     public String toString() {
-        return "Stock{" +
+        return "[ " +
                 "name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+                ", price=" + new DecimalFormat("#.##").format(price) +
+                " ]";
     }
 
     public static List<Stock> readStocksFromFile(String filename){
