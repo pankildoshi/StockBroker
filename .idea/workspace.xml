@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd5b7436-6344-4ca5-9c2a-8a13122d83b9" name="Changes" comment="Stock reading and updating complete">
-      <change afterPath="$PROJECT_DIR$/src/Models/Portfolio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Models/User.java" afterDir="false" />
+    <list default="true" id="cd5b7436-6344-4ca5-9c2a-8a13122d83b9" name="Changes" comment="Application Flow setup complete">
+      <change afterPath="$PROJECT_DIR$/src/Models/PortfolioStock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/stocks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/stocks.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Portfolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Portfolio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,11 +99,20 @@
       <option name="project" value="LOCAL" />
       <updated>1708423539082</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Application Flow setup complete">
+      <option name="closed" value="true" />
+      <created>1708426692472</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708426692472</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Stock reading and updating complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stock reading and updating complete" />
+    <MESSAGE value="Application Flow setup complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="Application Flow setup complete" />
   </component>
 </project>

@@ -2,6 +2,7 @@ import Models.Stock;
 import Models.User;
 import Services.StockUpdater;
 
+import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
 
@@ -60,9 +61,12 @@ public class App {
             System.out.println("7. Exit");
 
             System.out.print("\nEnter option number: ");
-            int option = scanner.nextInt();
+            int option = Integer.parseInt(scanner.nextLine());
             System.out.println();
 
+            String stockName;
+            int quantity;
+            Stock selectedStock;
             switch (option){
                 case 1:
                     System.out.println("1. View Stock");
@@ -70,11 +74,62 @@ public class App {
                         System.out.println(stock);
                     }
                     break;
-                case 2: break;
-                case 3: break;
-                case 4: break;
-                case 5: break;
-                case 6: break;
+                case 2:
+                    System.out.println("Enter Stock name: ");
+                    stockName = scanner.nextLine();
+                    System.out.println("Enter quantity: ");
+                    quantity = Integer.parseInt(scanner.nextLine());
+
+                    selectedStock = null;
+                    for(Stock stock : stocks){
+                        if(stock.getName().equals(stockName)){
+                            selectedStock = stock;
+                            break;
+                        }
+                    }
+
+                    if(selectedStock != null){
+                        user.buyStock(selectedStock, quantity);
+                    }
+                    else{
+                        System.out.println("Wrong stock name, Please try again.");
+                    }
+                    break;
+                case 3:
+                    user.getPortfolio().listPortfolioStocks();
+                    System.out.println("Enter Stock name: ");
+                    stockName = scanner.nextLine();
+                    System.out.println("Enter quantity: ");
+                    quantity = Integer.parseInt(scanner.nextLine());
+
+                    selectedStock = null;
+                    for(Stock stock : stocks){
+                        if(stock.getName().equals(stockName)){
+                            selectedStock = stock;
+                            break;
+                        }
+                    }
+
+                    if(selectedStock != null){
+                        user.sellStock(selectedStock, quantity);
+                    }
+                    else{
+                        System.out.println("Wrong stock name, Please try again.");
+                    }
+                    break;
+                case 4:
+                    user.getPortfolio().viewPortfolio();
+                    break;
+                case 5:
+                    System.out.println("Enter amount to be added: ");
+                    double amount = Double.parseDouble(scanner.nextLine());
+                    user.addFunds(amount);
+                    break;
+                case 6:
+                    System.out.println("Enter amount to withdraw: ");
+                    amount = Double.parseDouble(scanner.nextLine());
+                    user.withdrawFunds(amount);
+                    break;
                 case 7:
                     StockUpdater.stop();
                     Stock.writeStocksToFile(filename, stocks);

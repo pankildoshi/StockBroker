@@ -51,6 +51,14 @@ public class User {
         this.password = password;
     }
 
+    public double getTradingBalance() {
+        return tradingBalance;
+    }
+
+    public void setTradingBalance(double tradingBalance) {
+        this.tradingBalance = tradingBalance;
+    }
+
     public Portfolio getPortfolio() {
         return portfolio;
     }
@@ -67,5 +75,61 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public void buyStock(Stock stock, int quantity){
+        double stockPrice = stock.getPrice();
+        double purchaseAmount = stockPrice * quantity;
+        if(tradingBalance >= purchaseAmount){
+            PortfolioStock portfolioStock = new PortfolioStock(stock, quantity, stockPrice);
+
+            tradingBalance -= purchaseAmount;
+            this.portfolio.getStocks().add(portfolioStock);
+            this.portfolio.setTotalInvestment(this.portfolio.getTotalInvestment() + purchaseAmount);
+            System.out.println(stock.getName() + " added to your portfolio.");
+        }
+        else{
+            System.out.println("Insufficient Trading balance, Add Funds to continue.\n");
+        }
+    }
+
+    public void sellStock(Stock stock, int quantity) {
+        double stockPrice = stock.getPrice();
+        PortfolioStock selectPortfolioStock = null;
+        for(PortfolioStock portfolioStock : portfolio.getStocks()){
+            if(portfolioStock.getStock().getName().equals(stock.getName())){
+                selectPortfolioStock = portfolioStock;
+            }
+        }
+
+        if(selectPortfolioStock != null){
+            int purchasedQuantity = selectPortfolioStock.getQuantity();
+            if(quantity <= purchasedQuantity){
+                tradingBalance += stockPrice * quantity;
+                portfolio.setTotalInvestment(portfolio.getTotalInvestment() - (selectPortfolioStock.getPurchasedPrice() * quantity));
+                selectPortfolioStock.setQuantity(purchasedQuantity - quantity);
+                if(quantity == purchasedQuantity){
+                    portfolio.getStocks().remove(selectPortfolioStock);
+                }
+            }
+            else{
+                System.out.println("Invalid stock quantity. \n");
+            }
+        }
+        else{
+            System.out.println("No such stock in your portfolio, Please try again.");
+        }
+    }
+
+    public void addFunds(double amount) {
+        setTradingBalance(this.tradingBalance + amount);
+        System.out.println("Funds Added");
+        System.out.println("Current Trading Balance: " + this.tradingBalance);
+    }
+
+    public void withdrawFunds(double amount) {
+        setTradingBalance(this.tradingBalance - amount);
+        System.out.println("Funds Withdrawn");
+        System.out.println("Current Trading Balance: " + this.tradingBalance);
     }
 }
