@@ -7,8 +7,6 @@ import java.util.List;
 public class Portfolio {
     private List<PortfolioStock> stocks;
     private double totalInvestment;
-    private double returns;
-
     public Portfolio(){
         stocks = new ArrayList<>();
     }
@@ -29,21 +27,36 @@ public class Portfolio {
         this.totalInvestment = totalInvestment;
     }
 
-    public double getReturns() {
-        return returns;
-    }
-
-    public void setReturns(double returns) {
-        this.returns = returns;
-    }
-
     public void viewPortfolio(){
         System.out.println("Total Investment: " + new DecimalFormat("#.##").format(totalInvestment));
-        listPortfolioStocks();
-        System.out.println("Returns: " + new DecimalFormat("#.##").format(returns));
+        List<PortfolioStock> currentStocks = new ArrayList<>(this.stocks);
+        if(currentStocks.isEmpty()){
+            System.out.println("No stocks in your portfolio");
+            return;
+        }
+        for(PortfolioStock stock : currentStocks){
+            System.out.println(stock);
+        }
+        System.out.println("Returns: " + new DecimalFormat("#.##").format(getReturns(currentStocks)));
+    }
+
+    private double getReturns(List<PortfolioStock> stocks) {
+        double profitNLoss = 0;
+
+        for(PortfolioStock stock : stocks){
+            double investment = stock.getPurchasedPrice() * stock.getQuantity();
+            double currentValue = stock.getStock().getPrice() * stock.getQuantity();
+            profitNLoss += currentValue - investment;
+        }
+
+        return profitNLoss;
     }
 
     public void listPortfolioStocks(){
+        if(this.stocks.isEmpty()){
+            System.out.println("No stocks in your portfolio");
+            return;
+        }
         for(PortfolioStock stock : this.stocks){
             System.out.println(stock);
         }

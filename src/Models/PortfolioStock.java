@@ -39,10 +39,9 @@ public class PortfolioStock {
 
     @Override
     public String toString() {
-        return "PortfolioStock{" +
-                "stock=" + stock +
+        return "[ Stock=" + stock +
                 ", quantity=" + quantity +
                 ", purchasedPrice=" + new DecimalFormat("#.##").format(purchasedPrice) +
-                '}';
+                " ]";
     }
 }

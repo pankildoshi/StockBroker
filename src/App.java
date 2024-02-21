@@ -10,7 +10,7 @@ import static java.lang.System.exit;
 
 public class App {
     public static void main(String[] args){
-        System.out.println("Stock Broker Application Running...");
+        System.out.println("Stock Broker Application Running...\n");
 
         String filename = "data/stocks.txt";
         List<Stock> stocks = Stock.readStocksFromFile(filename);
@@ -20,7 +20,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         // Login Flow
-        System.out.println("Welcome!");
+        /*System.out.println("Welcome!");
         System.out.println("Please enter your username and password to login\n");
 
         final int MAX_LOGIN_ATTEMPTS = 3;
@@ -45,7 +45,7 @@ public class App {
                         + (MAX_LOGIN_ATTEMPTS - loginAttempts)
                         + " Attempts left.\n");
             }
-        }
+        }*/
         // Login Flow Ends
 
         // Main Application Flow
@@ -75,6 +75,7 @@ public class App {
                     }
                     break;
                 case 2:
+                    System.out.println("2. Buy Stock");
                     System.out.println("Enter Stock name: ");
                     stockName = scanner.nextLine();
                     System.out.println("Enter quantity: ");
@@ -96,6 +97,11 @@ public class App {
                     }
                     break;
                 case 3:
+                    System.out.println("3. Sell Stock");
+                    if(user.getPortfolio().getStocks().isEmpty()){
+                        System.out.println("No Stocks in your portfolio");
+                        break;
+                    }
                     user.getPortfolio().listPortfolioStocks();
                     System.out.println("Enter Stock name: ");
                     stockName = scanner.nextLine();

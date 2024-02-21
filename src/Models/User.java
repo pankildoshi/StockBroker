@@ -1,5 +1,7 @@
 package Models;
 
+import java.text.DecimalFormat;
+
 public class User {
     private String username;
     private String firstName;
@@ -86,7 +88,8 @@ public class User {
             tradingBalance -= purchaseAmount;
             this.portfolio.getStocks().add(portfolioStock);
             this.portfolio.setTotalInvestment(this.portfolio.getTotalInvestment() + purchaseAmount);
-            System.out.println(stock.getName() + " added to your portfolio.");
+            System.out.println("Stock bought successfully!");
+            System.out.println("[ name='" + stock.getName() + "' quantity=" + quantity + " ]");
         }
         else{
             System.out.println("Insufficient Trading balance, Add Funds to continue.\n");
@@ -111,6 +114,8 @@ public class User {
                 if(quantity == purchasedQuantity){
                     portfolio.getStocks().remove(selectPortfolioStock);
                 }
+                System.out.println("Stocks sold successfully");
+                System.out.println("[ name=" + selectPortfolioStock.getStock().getName() + " quantity=" + quantity + " ]");
             }
             else{
                 System.out.println("Invalid stock quantity. \n");
@@ -124,12 +129,18 @@ public class User {
     public void addFunds(double amount) {
         setTradingBalance(this.tradingBalance + amount);
         System.out.println("Funds Added");
-        System.out.println("Current Trading Balance: " + this.tradingBalance);
+        System.out.println("Current Trading Balance: " + new DecimalFormat("#.##").format(this.tradingBalance));
     }
 
     public void withdrawFunds(double amount) {
-        setTradingBalance(this.tradingBalance - amount);
-        System.out.println("Funds Withdrawn");
-        System.out.println("Current Trading Balance: " + this.tradingBalance);
+        double balance = this.tradingBalance - amount;
+        if(balance < 0){
+            System.out.println("Insufficient trading balance!");
+        }
+        else{
+            setTradingBalance(balance);
+            System.out.println("Funds Withdrawn");
+        }
+        System.out.println("Current Trading Balance: " + new DecimalFormat("#.##").format(this.tradingBalance));
     }
 }
