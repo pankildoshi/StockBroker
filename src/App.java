@@ -20,7 +20,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         // Login Flow
-        /*System.out.println("Welcome!");
+        System.out.println("Welcome!");
         System.out.println("Please enter your username and password to login\n");
 
         final int MAX_LOGIN_ATTEMPTS = 3;
@@ -45,7 +45,7 @@ public class App {
                         + (MAX_LOGIN_ATTEMPTS - loginAttempts)
                         + " Attempts left.\n");
             }
-        }*/
+        }
         // Login Flow Ends
 
         // Main Application Flow
@@ -67,6 +67,7 @@ public class App {
             String stockName;
             int quantity;
             Stock selectedStock;
+            double amount;
             switch (option){
                 case 1:
                     System.out.println("1. View Stock");
@@ -128,7 +129,7 @@ public class App {
                     break;
                 case 5:
                     System.out.println("Enter amount to be added: ");
-                    double amount = Double.parseDouble(scanner.nextLine());
+                    amount = Double.parseDouble(scanner.nextLine());
                     user.addFunds(amount);
                     break;
                 case 6:
